@@ -67,7 +67,7 @@ public class RepositoryTools extends Repository {
         return null;
     }
 
-    public boolean signUp(User user) {
+    public boolean containsKey(String key) {
         try {
             File file = new File(USER_REPO_PATH);
             Scanner reader = new Scanner(file);
@@ -75,16 +75,12 @@ public class RepositoryTools extends Repository {
                 while (reader.hasNextLine()) {
                     String data = reader.nextLine();
                     String[] parts = data.split(SEPARATOR);
-                    if (!user.getUsername().equals(parts[0])) {
-                        put(user.getUsername(), user, USER_REPO_PATH);
+                    if (key.equals(parts[0])) {
                         return true;
-                    } else {
-                        commandLineUserInterface.output("The username is already taken. Please use another username.");
-                        return false;
                     }
                 }
             } else {
-                put(user.getUsername(), user, USER_REPO_PATH);
+                System.out.println("The repository is empty.");
             }
             reader.close();
         } catch (IOException e) {
@@ -93,13 +89,23 @@ public class RepositoryTools extends Repository {
         return false;
     }
 
+    public boolean signUp(User user) {
+        if (!containsKey(user.getUsername())) {
+            put(user.getUsername(), user, USER_REPO_PATH);
+            return true;
+        } else {
+            commandLineUserInterface.output("The username is already taken. Please use another username.");
+            return false;
+        }
+    }
+
     public boolean signIn(User user) {
 
-            User userObj = (User) RepositoryTools.getInstance().get(user.getUsername(), USER_REPO_PATH);
-            if (user.getUsername().equals(userObj.getUsername()) && user.getPassword().equals(userObj.getUsername()))
-                return true;
-            else
-                return false;
+        User userObj = (User) RepositoryTools.getInstance().get(user.getUsername(), USER_REPO_PATH);
+        if (user.getUsername().equals(userObj.getUsername()) && user.getPassword().equals(userObj.getUsername()))
+            return true;
+        else
+            return false;
     }
 
     public String searchByKey(String key, String fileName) {
@@ -119,12 +125,5 @@ public class RepositoryTools extends Repository {
         }
         return null;
     }
-
-//    public boolean signIn() {
-//        if (UserDB.getInstance().users.containsKey(user.getUsername()) && UserDB.getInstance().users.containsValue(user.getPassword())) {
-//            return true;
-//        }
-//        return false;
-//    }
 
 }

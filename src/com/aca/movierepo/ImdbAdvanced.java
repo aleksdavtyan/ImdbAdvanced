@@ -6,16 +6,15 @@ import com.aca.movierepo.user.StandardUser;
 
 public class ImdbAdvanced {
 
-    private static final Admin admin = new Admin("admin", "admin");
+    private static final Admin admin = new Admin("admin", "admin12345678");
 
     public static void startImdb() {
 
         StandardUser user1 = new StandardUser("john", "john1111");
         StandardUser user2 = new StandardUser("alex", "alex2222");
 
-        RepositoryTools.getInstance().put(admin.getUsername(), admin, RepositoryTools.getUserRepoPath());
 
-        if(admin.userSignUp(admin)) { System.out.println("Admin was successfully Signed up!!!"); }
+        if(admin.userSignUp(admin)) { System.out.println("admin was successfully Signed up!!!"); }
 
         if (user2.userSignUp(user2)) {
             System.out.println("alex was successfully Signed up.");
