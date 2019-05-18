@@ -1,6 +1,8 @@
 package com.aca.movierepo.movie;
 
-public enum Genre {
+import java.io.Serializable;
+
+public enum Genre implements Serializable {
     ACTION,
     COMEDY,
     CRIME,

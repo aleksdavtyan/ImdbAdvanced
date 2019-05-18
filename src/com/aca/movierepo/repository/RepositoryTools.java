@@ -39,7 +39,6 @@ public class RepositoryTools extends Repository {
             writer.append(key + SEPARATOR + strValue + NEW_LINE);
             System.out.println("Successfully wrote to the file.");
             writer.flush(); //method flushes the stream.
-            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

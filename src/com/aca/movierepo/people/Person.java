@@ -1,11 +1,13 @@
 package com.aca.movierepo.people;
 
 
-public abstract class Person {
+import java.io.Serializable;
+
+public abstract class Person implements Serializable {
 
     private static int count = 0;
     private final int id = count++;
-    private final String fullName;
+    private String fullName;
     private String bio;
 
     public Person(String fullName, String bio) {
@@ -25,6 +27,6 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return String.format("Full name: %f.\nBiography: %f.", getFullName(), getBio());
+        return String.format("Full name: %s.\nBiography: %s.", getFullName(), getBio());
     }
 }

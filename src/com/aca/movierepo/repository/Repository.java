@@ -1,10 +1,9 @@
 package com.aca.movierepo.repository;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 
-public abstract class Repository<T extends Serializable, V extends Serializable> {
+public abstract class Repository<Key extends Serializable, V extends Serializable> {
 
     public abstract void put(String key, V value, String fileName) throws IOException;
 

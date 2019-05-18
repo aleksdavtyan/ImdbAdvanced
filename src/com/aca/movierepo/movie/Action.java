@@ -16,9 +16,9 @@ public class Action extends Movie {
     @Override
     public String toString() {return "|Action|\n" + super.toString(); }
 
-    @Override
-    public double currentRating() {
-        return super.currentRating();
-    }
+//    @Override
+//    public double currentRating() {
+//        return super.currentRating();
+//    }
 
 }

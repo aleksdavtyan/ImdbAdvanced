@@ -15,8 +15,8 @@ public class Comedy extends Movie {
     @Override
     public String toString() {return "|Comedy|\n" + super.toString(); }
 
-    @Override
-    public double currentRating() {
-        return super.currentRating();
-    }
+//    @Override
+//    public double currentRating() {
+//        return super.currentRating();
+//    }
 }
