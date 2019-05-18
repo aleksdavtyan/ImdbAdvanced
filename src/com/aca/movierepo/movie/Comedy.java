@@ -1,14 +1,14 @@
 package com.aca.movierepo.movie;
 
 import com.aca.movierepo.people.Person;
-import sun.util.resources.LocaleData;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Comedy extends Movie {
     public ArrayList<Integer> rating = new ArrayList<Integer>();
 
-    public Comedy(String title, String description, LocaleData premiereDate, Person[] people) {
+    public Comedy(String title, String description, LocalDate premiereDate, Person[] people) {
         super(title, description, premiereDate, Genre.COMEDY, people);
     }
 

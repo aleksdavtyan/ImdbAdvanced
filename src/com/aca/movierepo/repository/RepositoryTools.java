@@ -100,12 +100,12 @@ public class RepositoryTools extends Repository {
     }
 
     public boolean signIn(User user) {
-
-        User userObj = (User) RepositoryTools.getInstance().get(user.getUsername(), USER_REPO_PATH);
-        if (user.getUsername().equals(userObj.getUsername()) && user.getPassword().equals(userObj.getUsername()))
-            return true;
-        else
-            return false;
+        if (containsKey(user.getUsername())) {
+            User userObj = (User) RepositoryTools.getInstance().get(user.getUsername(), USER_REPO_PATH);
+            if (user.getUsername().equals(userObj.getUsername()) && user.getPassword().equals(userObj.getPassword()))
+                return true;
+        }
+        return false;
     }
 
     public String searchByKey(String key, String fileName) {

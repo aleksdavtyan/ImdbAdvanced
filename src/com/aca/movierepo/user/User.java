@@ -7,7 +7,7 @@ import java.io.Serializable;
 public abstract class User implements Serializable {
 
     private static int count = 0;
-    transient private final int id = count++;
+    private final int id = count++;
     private String username;
     private String password;
 

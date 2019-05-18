@@ -1,9 +1,8 @@
 package com.aca.movierepo.people;
 
+public class Director extends Person {
 
-public class Actor extends Person {
-
-    public Actor(String fullName, String bio) {
+    public Director(String fullName, String bio) {
         super(fullName, bio);
     }
 
@@ -19,6 +18,6 @@ public class Actor extends Person {
 
     @Override
     public String toString() {
-        return "Actor: " + super.toString();
+        return "Director " + super.toString();
     }
 }
