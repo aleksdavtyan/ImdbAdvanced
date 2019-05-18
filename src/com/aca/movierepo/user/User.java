@@ -7,7 +7,7 @@ import java.io.Serializable;
 public abstract class User implements Serializable {
 
     private static int count = 0;
-    private final int id = count++;
+    transient private final int id = count++;
     private String username;
     private String password;
 
@@ -40,11 +40,4 @@ public abstract class User implements Serializable {
     public String toString() {
         return String.format("userID: %s\nusername: %s\npassword: %s", getId(), getUsername(), getPassword());
     }
-
-    //    public boolean signIn(User user) {
-//        if (UserDB.getInstance().users.containsKey(user.getUsername()) && UserDB.getInstance().users.containsValue(user.getPassword())) {
-//            return true;
-//        }
-//        return false;
-//    }
 }

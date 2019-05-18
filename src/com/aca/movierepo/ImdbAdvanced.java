@@ -18,7 +18,7 @@ public class ImdbAdvanced {
         if(admin.userSignUp(admin)) { System.out.println("Admin was successfully Signed up!!!"); }
 
         if (user2.userSignUp(user2)) {
-            System.out.println("John was successfully Signed up.");
+            System.out.println("alex was successfully Signed up.");
         }
 
         //if(user2.userSignIn(user2)) { System.out.println("Successfully Signed In."); }

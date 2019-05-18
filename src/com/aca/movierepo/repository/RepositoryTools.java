@@ -36,20 +36,9 @@ public class RepositoryTools extends Repository {
         try {
             FileWriter writer = new FileWriter(fileName, true); // append true is writing from next position
             String strValue = ObjectSerializer.objectToString(value);
-            File file = new File(fileName);
-            Scanner reader = new Scanner(file);
-            while (reader.hasNextLine()) {
-                String data = reader.nextLine();
-                String[] parts = data.split(SEPARATOR);
-                if (!key.equals(parts[0])) {
-                    writer.append(key + SEPARATOR + strValue + NEW_LINE);
-                    System.out.println("Successfully wrote to the file.");
-                    writer.flush(); //method flushes the stream.
-                } else {
-                    commandLineUserInterface.output("The username is already taken. Please use another username.");
-                }
-            }
-            reader.close();
+            writer.append(key + SEPARATOR + strValue + NEW_LINE);
+            System.out.println("Successfully wrote to the file.");
+            writer.flush(); //method flushes the stream.
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -81,17 +70,23 @@ public class RepositoryTools extends Repository {
     public boolean signUp(User user) {
         try {
             File file = new File(USER_REPO_PATH);
-            Scanner myReader = new Scanner(file);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                String[] parts = data.split(SEPARATOR);
-                if (!user.getUsername().equals(parts[0])) {
-                    put(user.getUsername(), user, USER_REPO_PATH);
-                    return true;
-                } else {
-                    commandLineUserInterface.output("The username is already taken. Please use another username.");
+            Scanner reader = new Scanner(file);
+            if (file.length() != 0) {
+                while (reader.hasNextLine()) {
+                    String data = reader.nextLine();
+                    String[] parts = data.split(SEPARATOR);
+                    if (!user.getUsername().equals(parts[0])) {
+                        put(user.getUsername(), user, USER_REPO_PATH);
+                        return true;
+                    } else {
+                        commandLineUserInterface.output("The username is already taken. Please use another username.");
+                        return false;
+                    }
                 }
+            } else {
+                put(user.getUsername(), user, USER_REPO_PATH);
             }
+            reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,11 +94,12 @@ public class RepositoryTools extends Repository {
     }
 
     public boolean signIn(User user) {
-        User UserObj = (User) RepositoryTools.getInstance().get(user.getUsername(), USER_REPO_PATH);
-        if (user.getUsername().equals(UserObj.getUsername()) && user.getPassword().equals(UserObj.getUsername()))
-            return true;
-        else
-            return false;
+
+            User userObj = (User) RepositoryTools.getInstance().get(user.getUsername(), USER_REPO_PATH);
+            if (user.getUsername().equals(userObj.getUsername()) && user.getPassword().equals(userObj.getUsername()))
+                return true;
+            else
+                return false;
     }
 
     public String searchByKey(String key, String fileName) {
